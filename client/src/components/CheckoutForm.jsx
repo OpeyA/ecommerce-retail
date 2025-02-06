@@ -7,6 +7,7 @@ import {useStripe, useElements} from '@stripe/react-stripe-js';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import {useNavigate} from 'react-router-dom';
 
 export default function CheckoutForm({emptyCart}) {
   const stripe = useStripe();
@@ -14,6 +15,8 @@ export default function CheckoutForm({emptyCart}) {
   //Setting up the state variables for the message and isloading
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,18 +28,14 @@ export default function CheckoutForm({emptyCart}) {
 
     const {error, paymentIntent} = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        // Remove return_url and handle the response manually
-        return_url: `${window.location.origin}/completion`,
-      },
-      redirect: 'if_required', // Prevents automatic redirection
+      confirmParams: {},
+      redirect: 'if_required',
     });
 
     if (error) {
       setMessage(error.message);
     } else if (paymentIntent.status === 'succeeded') {
-      setMessage('Payment successful!');
-      // Optionally, navigate to /complete using React Router
+      navigate('/complete'); // Redirect within the React app
     } else {
       setMessage('Payment processing...');
     }
