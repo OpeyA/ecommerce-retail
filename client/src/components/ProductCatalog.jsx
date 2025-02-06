@@ -67,8 +67,7 @@ const ProductCatalog = () => {
         <Container className=''>
           <Alert variant="dark" className='m-2' onClose={() => setShow(false)} dismissible>
             {' '}
-            You have added a new an item to the cart. Check it out in the{' '}
-            <Alert.Link href="/cart">Cart</Alert.Link>
+            You have added a new an item to the cart. Check it out in the Cart{' '}
           </Alert>
         </Container>
       )}
