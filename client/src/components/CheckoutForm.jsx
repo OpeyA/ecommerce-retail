@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
+
 export default function CheckoutForm({emptyCart}) {
   const stripe = useStripe();
   const elements = useElements();
@@ -31,7 +32,7 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://cozy-threads-front-end-service.onrender.com/payment-success`,
+        return_url: `${window.location.origin}/payment-success`,
       },
     });
 
