@@ -18,28 +18,20 @@ export default function CheckoutForm({emptyCart}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-    //setting isLoading to true and calling the empty cart function to remove the previous items from the cart
+    if (!stripe || !elements) return;
+
     setIsLoading(true);
     emptyCart();
-    //using stripe confrimPayment methond and passing in elements that was initialized; also setting the return URl path to the Payment Complete page in the project. Also error handling
-    const {error} = await stripe.confirmPayment({
+
+    const {error, paymentIntent} = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/complete`,
+        // Remove return_url and handle the response manually
+        return_url: undefined,
       },
       redirect: 'if_required', // Prevents automatic redirection
     });
-    // // This point will only be reached if there is an immediate error when
-    // // confirming the payment. Otherwise, your customer will be redirected to
-    // // your `return_url`. For some payment methods like iDEAL, your customer will
-    // // be redirected to an intermediate site first to authorize the payment, then
-    // // redirected to the `return_url`.
+
     if (error) {
       setMessage(error.message);
     } else if (paymentIntent.status === 'succeeded') {
