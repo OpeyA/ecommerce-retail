@@ -59,13 +59,6 @@ function PaymentComplete(props) {
               email provided.
             </p>
           </Stack>
-          <div
-            id="messages"
-            role="alert"
-            style={messageBody ? {display: 'block'} : {}}
-          >
-            {messageBody}
-          </div>
         </section>
       </Container>
     </>
