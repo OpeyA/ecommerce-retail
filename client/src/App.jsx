@@ -18,6 +18,14 @@ import {useState} from 'react';
 //Using React Router to route between pages. Each Route takes the path and the element to
 
 const App = () => {
+  const [stripePromise, setStripePromise] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/config').then(async (r) => {
+      const {publishableKey} = await r.json();
+      setStripePromise(loadStripe(publishableKey));
+    });
+  }, []);
   return (
     <>
       <Router>
@@ -28,7 +36,10 @@ const App = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/complete" element={<PaymentComplete />} />
+            <Route
+              path="/complete"
+              element={<PaymentComplete stripePromise={stripePromise} />}
+            />
           </Routes>
         </CartProvider>
       </Router>
