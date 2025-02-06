@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
@@ -22,7 +21,6 @@
       "last 1 safari version"
     ]
   },
-
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -43,7 +41,7 @@
     "react-router": "^7.1.5",
     "react-router-dom": "^7.1.5",
     "react-use-cart": "^1.14.0",
-    "sort-by": "^1.2.0",
+    "sort-by": "^0.0.2",
     "stripe": "^17.6.0",
     "swiper": "^11.2.2",
     "web-vitals": "^3.5.1"
