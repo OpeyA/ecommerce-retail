@@ -32,7 +32,7 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/payment-success?`,
+        return_url: `${window.location.origin}/complete`,
       },
     });
 
@@ -65,7 +65,7 @@ export default function CheckoutForm({emptyCart}) {
       <Container className="mt-5">
         <Form as="form" id="payment-form" onSubmit={handleSubmit}>
           {/* Payment element and linkauthentidationelement from stripe react imported into thsi component */}
-          <LinkAuthenticationElement id="link-authentication-element" />
+          <LinkAuthenticationElement id="link-authentication-element"/>
           <PaymentElement id="payment-element" />
           <Button
             className="mt-3"
