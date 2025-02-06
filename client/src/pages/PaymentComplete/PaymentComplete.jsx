@@ -11,7 +11,8 @@ function PaymentComplete(props) {
     if (!stripePromise) return;
 
     stripePromise.then(async (stripe) => {
-      const url = new URL(window.location);
+      const url = new URL(`${window.location}/complete`);
+      console.log(url);
       const clientSecret = url.searchParams.get('payment_intent_client_secret');
       const {error, paymentIntent} = await stripe.retrievePaymentIntent(
         clientSecret

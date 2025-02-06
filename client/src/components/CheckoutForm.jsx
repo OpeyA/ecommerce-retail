@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 
-
 export default function CheckoutForm({emptyCart}) {
   const stripe = useStripe();
   const elements = useElements();
@@ -32,32 +31,22 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://cozy-threads-front-end-service.onrender.com/complete`,
+        return_url: `${window.location.origin}/complete`,
       },
     });
-
-    if (error) {
-      setMessage(error.message);
-      setIsLoading(false); // Reset loading state if there's an error
-    } else {
-      // Slight delay before redirecting to allow UI updates
-      setTimeout(() => {
-        window.location.href = '/complete';
-      }, 500);
-    }
 
     // // This point will only be reached if there is an immediate error when
     // // confirming the payment. Otherwise, your customer will be redirected to
     // // your `return_url`. For some payment methods like iDEAL, your customer will
     // // be redirected to an intermediate site first to authorize the payment, then
     // // redirected to the `return_url`.
-    // if (error.type === 'card_error' || error.type === 'validation_error') {
-    //   setMessage(error.message);
-    // } else {
-    //   setMessage('An unexpected error occured.');
-    // }
+    if (error.type === 'card_error' || error.type === 'validation_error') {
+      setMessage(error.message);
+    } else {
+      setMessage('An unexpected error occured.');
+    }
 
-    // setIsLoading(false);
+    setIsLoading(false);
   };
 
   return (
@@ -65,7 +54,7 @@ export default function CheckoutForm({emptyCart}) {
       <Container className="mt-5">
         <Form as="form" id="payment-form" onSubmit={handleSubmit}>
           {/* Payment element and linkauthentidationelement from stripe react imported into thsi component */}
-          <LinkAuthenticationElement id="link-authentication-element"/>
+          <LinkAuthenticationElement id="link-authentication-element" />
           <PaymentElement id="payment-element" />
           <Button
             className="mt-3"
