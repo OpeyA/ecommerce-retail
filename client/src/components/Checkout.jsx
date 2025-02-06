@@ -25,10 +25,12 @@ function Checkout() {
     fetch('https://cozy-threads-back-end-service.onrender.com/create-payment-intent')
       .then((res) => res.json())
       .then(({clientSecret}) => {
+        console.log("Client Secret:", clientSecret);
         setClientSecret(clientSecret);
       })
       .catch((error) => console.error('Error fetching payment intent:', error));
   }, []);
+  
 
   //Appearance and loader added from Stripe documentation
   const appearance = {
