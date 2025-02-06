@@ -68,7 +68,7 @@ const calculate_tax = async (orderAmount, currency) => {
 };
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://cozy-threads-front-end-service.onrender.com/checkout'  // Allow requests from your render domain
+  origin: '*'  // Allow requests from your render domain
 }));
 app.get('/create-payment-intent', async (req, res) => {
   // Create a PaymentIntent with the amount, currency, and a payment method type.
