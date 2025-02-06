@@ -32,7 +32,7 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/payment-success`,
+        return_url: `${window.location.origin}/payment-success?`,
       },
     });
 
