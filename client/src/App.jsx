@@ -17,24 +17,6 @@ import {useState} from 'react';
 
 //Using React Router to route between pages. Each Route takes the path and the element to
 
-function PaymentRedirect() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const status = searchParams.get('redirect_status');
-
-    // If payment succeeded, remove query params and redirect
-    if (status === 'succeeded') {
-      navigate('/complete', {replace: true}); // Redirect to clean /complete page
-    } else {
-      navigate('/checkout', {replace: true}); // Redirect back if failed
-    }
-  }, [navigate, location]);
-
-  return <p>Redirecting...</p>; // Temporary loading message
-}
 const App = () => {
   return (
     <>
@@ -46,7 +28,6 @@ const App = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/payment-success?" element={<PaymentRedirect />} />
             <Route path="/complete" element={<PaymentComplete />} />
           </Routes>
         </CartProvider>
