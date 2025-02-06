@@ -8,7 +8,7 @@ import Checkout from './pages/CheckoutPage/CheckoutPage';
 import PaymentComplete from './pages/PaymentComplete/PaymentComplete';
 import {CartProvider} from 'react-use-cart';
 import {loadStripe} from '@stripe/stripe-js';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 //Pages are imported into the App.jsx file. The only component directly imported is Navbar so the navigation remains the same with all pages.
 //CartProvider is from the useCart react shopping cart. The application needs to be wrapped in it so that the useCart hook can access the cart state and current values.
 
@@ -26,6 +26,7 @@ const App = () => {
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
+
   return (
     <>
       <Router>
