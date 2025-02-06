@@ -3,6 +3,7 @@ const app = express();
 const { resolve } = require('path');
 // Replace if using a different env file or config
 const env = require('dotenv').config({ path: './.env' });
+const PORT = process.env.PORT || 4242;
 const calculateTax = false;
 
 
@@ -67,7 +68,7 @@ const calculate_tax = async (orderAmount, currency) => {
 };
 const cors = require('cors');
 app.use(cors({
-  origin: 'http://localhost:3000'  // Allow requests from your frontend
+  origin: '*'  // Allow requests from your any domain
 }));
 app.get('/create-payment-intent', async (req, res) => {
   // Create a PaymentIntent with the amount, currency, and a payment method type.
@@ -151,6 +152,6 @@ app.post('/webhook', async (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(4242, () =>
-  console.log(`Node server listening at http://localhost:4242`)
+app.listen(PORT, () =>
+  console.log(`Node server listening at ${PORT}`)
 );
