@@ -15,8 +15,9 @@ export default defineConfig({
           rewrite: (path) => path.replace(/^\/api/, '')
         }
     },
-    allowedHosts: "cozy-threads-35dx.onrender.com"
+    allowedHosts: "https://cozy-threads-35dx.onrender.com/"
   },
+
   build: {
     outDir: "build",
   },
