@@ -22,7 +22,7 @@ function Checkout() {
     //from the JSON response we get destructure the clientSecret and set it using setClientState
     //Catch error incase promise is not consumed/fail
     //clientSecret retuned by the sevrer enppoint is used to complete payment
-    fetch('http://localhost:4242/create-payment-intent')
+    fetch('https://cozy-threads-back-end-service.onrender.com/create-payment-intent')
       .then((res) => res.json())
       .then(({clientSecret}) => {
         setClientSecret(clientSecret);
