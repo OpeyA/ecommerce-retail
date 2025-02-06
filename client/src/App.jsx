@@ -21,7 +21,7 @@ const App = () => {
   const [stripePromise, setStripePromise] = useState(null);
 
   useEffect(() => {
-    fetch('https://cozy-threads-back-end-service.onrender.com/config').then(async (r) => {
+    fetch('/api/config').then(async (r) => {
       const {publishableKey} = await r.json();
       setStripePromise(loadStripe(publishableKey));
     });
