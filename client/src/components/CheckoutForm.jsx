@@ -27,22 +27,26 @@ export default function CheckoutForm({emptyCart}) {
     setIsLoading(true);
     emptyCart();
     //using stripe confrimPayment methond and passing in elements that was initialized; also setting the return URl path to the Payment Complete page in the project. Also error handling
-    const { error } = await stripe.confirmPayment({
+    const {error} = await stripe.confirmPayment({
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://cozy-threads-front-end-service.onrender.com/complete`,
+        return_url: `${window.location.origin}/complete`,
       },
+      redirect: 'if_required', // Prevents automatic redirection
     });
     // // This point will only be reached if there is an immediate error when
     // // confirming the payment. Otherwise, your customer will be redirected to
     // // your `return_url`. For some payment methods like iDEAL, your customer will
     // // be redirected to an intermediate site first to authorize the payment, then
     // // redirected to the `return_url`.
-    if (error.type === 'card_error' || error.type === 'validation_error') {
+    if (error) {
       setMessage(error.message);
+    } else if (paymentIntent.status === 'succeeded') {
+      setMessage('Payment successful!');
+      // Optionally, navigate to /complete using React Router
     } else {
-      setMessage('An unexpected error occured.');
+      setMessage('Payment processing...');
     }
 
     setIsLoading(false);
