@@ -27,7 +27,7 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Remove return_url and handle the response manually
-        return_url: undefined,
+        return_url: `${window.location.origin}/completion`,
       },
       redirect: 'if_required', // Prevents automatic redirection
     });
