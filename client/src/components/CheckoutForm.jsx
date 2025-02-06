@@ -31,7 +31,7 @@ export default function CheckoutForm({emptyCart}) {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: `https://cozy-threads-front-end-service.onrender.com/complete`,
+        return_url: `${window.location.origin}/complete`,
       },
     });
 
