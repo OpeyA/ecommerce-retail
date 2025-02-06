@@ -69,6 +69,7 @@ const calculate_tax = async (orderAmount, currency) => {
 const cors = require('cors');
 app.use(cors({
   origin: '*'  // Allow requests from your render domain
+  // origin: 'http://localhost:3000'
 }));
 app.get('/create-payment-intent', async (req, res) => {
   // Create a PaymentIntent with the amount, currency, and a payment method type.
@@ -155,3 +156,6 @@ app.post('/webhook', async (req, res) => {
 app.listen(PORT, () =>
   console.log(`Node server listening at ${PORT}`)
 );
+// app.listen(4242, () =>
+//   console.log(`Node server listening at 4242`)
+// );
