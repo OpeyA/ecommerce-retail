@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout stripePromise={stripePromise} />} />
             <Route
               path="/complete"
               element={<PaymentComplete stripePromise={stripePromise} />}
