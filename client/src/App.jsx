@@ -46,7 +46,7 @@ const App = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/payment-success" element={<PaymentRedirect />} />
+            <Route path="/payment-success?" element={<PaymentRedirect />} />
             <Route path="/complete" element={<PaymentComplete />} />
           </Routes>
         </CartProvider>
